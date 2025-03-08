@@ -14,9 +14,7 @@ Description: Build a system to log, monitor, and analyze cybersecurity incidents
  
  Reporting Tools: Generate reports on incident frequency, types, and resolutions.
  
- User Access Control: Manage permissions for different user roles, ensuring data 
- 
-confidentiality.
+ User Access Control: Manage permissions for different user roles, ensuring data confidentiality.
 
 
 OOP Principles Applied:
