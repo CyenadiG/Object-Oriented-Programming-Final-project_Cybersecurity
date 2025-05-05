@@ -1,5 +1,14 @@
 package dao;
 
+/*
+Job: Handles interactions with the database for User data
+Task breakdown:
+    1.Retrieves a user by their username
+    2.adds new users to database
+Connection:
+    1. Interacts with PostgreSQL database through DBConnection
+ */
+
 import db.DBConnection;
 import model.User;
 
@@ -28,4 +37,20 @@ public class UserDAO {
         }
         return null;
     }
+
+    public boolean addUser(User newUser) throws SQLException {
+        String sql = "INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, newUser.getUsername());
+            stmt.setString(2, newUser.getPasswordHash());
+            stmt.setString(3, newUser.getRole());
+
+            int rowsInserted = stmt.executeUpdate();
+            return rowsInserted > 0;
+        }
+    }
+
 }
