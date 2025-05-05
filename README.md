@@ -34,3 +34,13 @@ Technologies:
 GUI: JavaFX for an interactive dashboard.
 
 Database: PostgreSQL or MongoDB for storing incident logs and user data.
+
+Instructions: 
+Before running the project:
+	1. Create a config.properties file in the root folder
+	2. Add the following content (customized with your PostgreSQL 	credientials):	
+		DB_URL=jdbc:postgresql://localhost:5432/cyber_incidents
+		DB_USER=postgres
+		DB_PASSWORD=your_postgres_password_here
+
+
