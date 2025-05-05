@@ -1,9 +1,18 @@
+/*
+Job: Handles interactions with the database for Incident data
+Task breakdown:
+    1.adds new incidents to the database
+    2.retrieves all incidents from database
+Connection:
+    1. Interacts with PostgreSQL database through DBConnection
+ */
+
 package dao;
 
-import com.sun.jdi.connect.spi.Connection;
 import db.DBConnection;
 import model.Incident;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,11 +22,11 @@ import java.util.List;
 
 public class IncidentDAO {
 
-    public void addIncident(Incident incident) throws SQLException {
+    public static void addIncident(Incident incident) throws SQLException {
         String sql = "INSERT INTO incidents (type, description, severity, status, reported_by) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = ((java.sql.Connection) conn).prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, incident.type);
             stmt.setString(2, incident.description);
@@ -32,8 +41,8 @@ public class IncidentDAO {
         List<Incident> incidents = new ArrayList<>();
         String sql = "SELECT * FROM incidents";
 
-        try (Connection conn = (Connection) DBConnection.getConnection());
-             Statement stmt = ((java.sql.Connection) conn).createStatement();
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
