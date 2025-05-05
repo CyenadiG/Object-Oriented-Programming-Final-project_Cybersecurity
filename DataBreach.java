@@ -1,3 +1,12 @@
+/*
+Job: Defines the DataBreach incident type
+Task breakdown:
+    1. Stores specific details about data breaches, sucb as the type of leaked data
+Connection:
+    1. Extends the Incident class
+    2.Used in FileIncidentProcessor.java to create a DataBreach instance for incidents with that type
+ */
+
 package model;
 
 public class DataBreach extends Incident {
@@ -13,4 +22,13 @@ public class DataBreach extends Incident {
     }
 
     // Getters/Setters
+    public String getLeakedData() {
+        return leakedData;
+    }
+
+    public void setLeakedData(String leakedData) {
+        this.leakedData = leakedData;
+    }
+
+
 }
